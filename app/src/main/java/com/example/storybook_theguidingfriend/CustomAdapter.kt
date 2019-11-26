@@ -30,9 +30,12 @@ class CustomAdapter(val storyBooksList: ArrayList<StoryBooksDataClass>) : Recycl
             val intent = Intent(context, StoryBookDetailActivity::class.java)
             intent.putExtra("storyTitle", storyBooksList[position].storyTitle)
             intent.putExtra("storyAuthor", storyBooksList[position].storyAuthorName)
+            intent.putExtra("storyURL", storyBooksList[position].storyURL)
             context!!.startActivity(intent)
 
         }
+
+        println(itemCount)
     }
 
     //the class is hodling the list view
