@@ -5,4 +5,5 @@ data class StoryBooksDataClass(
     var sno: Int = 0,
     var storyTitle: String? = null,
     var storyAuthorName: String? = null,
-    var storyURL: String? = null)
+    var storyURL: String? = null
+)

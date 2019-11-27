@@ -13,9 +13,9 @@ class CustomAdapter(val storyBooksList: ArrayList<StoryBooksDataClass>) : Recycl
     private var context: Context? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapter.ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.list_layout, parent, false)
-        context = v.context
-        return ViewHolder(v)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_layout, parent, false)
+        context = view.context
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -34,11 +34,9 @@ class CustomAdapter(val storyBooksList: ArrayList<StoryBooksDataClass>) : Recycl
             context!!.startActivity(intent)
 
         }
-
-        println(itemCount)
     }
 
-    //the class is hodling the list view
+    //the class is holing the list view
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItems(storyBook: StoryBooksDataClass) {

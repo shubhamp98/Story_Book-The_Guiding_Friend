@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private var mRecyclerView: RecyclerView? = null
     private var mAdapter: RecyclerView.Adapter<*>? = null
-    var storyDetails: ArrayList<StoryBooksDataClass> = ArrayList()
+    var storyDetails = ArrayList<StoryBooksDataClass>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,16 +32,15 @@ class MainActivity : AppCompatActivity() {
 
         //getting recyclerview from xml
         mRecyclerView = findViewById(R.id.bookListRecyclerView)
-
         //adding a layoutmanager
         val mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
         mRecyclerView!!.layoutManager = mLayoutManager
+
+        //storyDetails.add(StoryBooksDataClass(1, "Test", "Shubham", "test"))
 
         //println("After FB Data:" + storyDetails)
         mAdapter = CustomAdapter(storyDetails)
         mRecyclerView!!.adapter = mAdapter
-        mAdapter!!.notifyDataSetChanged()
     }
 
     private fun getStoryDetailsFromFirebaseDB() {
@@ -67,6 +66,7 @@ class MainActivity : AppCompatActivity() {
                         val storyAuthorFromFB = hashMap["Author"].toString()
                         val storyURLFromFB = hashMap["URL"].toString()
 
+                        /*====================
                         val storyData = StoryBooksDataClass() // StoryBooksDataClass is a class used to bind the data
                         storyData.sno = sno
                         storyData.storyTitle = storyTitleFromFB
@@ -75,12 +75,17 @@ class MainActivity : AppCompatActivity() {
 
                         storyDetails.add(storyData)
 
-                        println("In FB Data:" + storyDetails)
+                         */
+
+                        storyDetails.add(StoryBooksDataClass(sno, storyTitleFromFB, storyAuthorFromFB, storyURLFromFB))
+
+                        //println("In FB Data:" + storyDetails)
 
                         lastStoryTextView.text = "Last story: " + storyTitleFromFB
 
                     }
                 }
+                mAdapter!!.notifyDataSetChanged() // it is used to indicate that some new data add/changed
             }
         })
     }
